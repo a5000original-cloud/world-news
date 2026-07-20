@@ -14,7 +14,6 @@
             --primary: #3b82f6;
             --danger: #ef4444;
             --success: #10b981;
-            --warning: #f59e0b;
             --bg: #f8fafc;
         }
 
@@ -33,6 +32,7 @@
             justify-content: center;
             min-height: 100vh;
             background: linear-gradient(135deg, #1e293b, #0f172a);
+            padding: 1rem;
         }
 
         .login-card {
@@ -42,27 +42,44 @@
             text-align: center;
             box-shadow: 0 30px 60px rgba(0,0,0,0.3);
             max-width: 400px;
-            width: 90%;
+            width: 100%;
+        }
+
+        .login-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
 
         .login-card h1 {
             margin-bottom: 0.5rem;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
+        }
+
+        .login-card p {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
         }
 
         .login-card input {
             width: 100%;
-            padding: 0.8rem;
-            margin: 1rem 0;
+            padding: 0.9rem 1rem;
+            margin-bottom: 1rem;
             border: 2px solid #e2e8f0;
             border-radius: 12px;
             font-size: 1rem;
             font-family: inherit;
+            transition: border 0.3s;
+        }
+
+        .login-card input:focus {
+            outline: none;
+            border-color: var(--primary);
         }
 
         .login-card button {
             width: 100%;
-            padding: 0.8rem;
+            padding: 0.9rem;
             background: var(--primary);
             color: white;
             border: none;
@@ -71,6 +88,18 @@
             font-size: 1rem;
             cursor: pointer;
             font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .login-card button:hover {
+            background: #1d4ed8;
+        }
+
+        .error-msg {
+            color: var(--danger);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
         }
 
         .admin-header {
@@ -80,24 +109,54 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid #e2e8f0;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .admin-container {
             max-width: 1200px;
             margin: 2rem auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.85rem;
         }
 
         .tabs {
             display: flex;
             gap: 0.5rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
         }
 
         .tab {
-            padding: 0.6rem 1.5rem;
+            padding: 0.6rem 1.3rem;
             border-radius: 50px;
             font-weight: 600;
+            font-size: 0.85rem;
             border: none;
             cursor: pointer;
             background: white;
@@ -112,9 +171,9 @@
 
         .news-list-item {
             background: white;
-            padding: 1.5rem;
+            padding: 1.2rem;
             border-radius: 16px;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -123,17 +182,27 @@
             gap: 1rem;
         }
 
-        .news-list-item h3 {
-            font-size: 1rem;
+        .news-info {
             flex: 1;
             min-width: 200px;
         }
 
+        .news-info h3 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .news-info small {
+            color: #64748b;
+        }
+
         .status-badge {
+            display: inline-block;
             padding: 0.3rem 0.8rem;
             border-radius: 30px;
             font-size: 0.75rem;
             font-weight: 600;
+            margin-right: 0.5rem;
         }
 
         .status-pending { background: #fef3c7; color: #92400e; }
@@ -142,35 +211,44 @@
 
         .action-btns {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.4rem;
+            flex-wrap: wrap;
         }
 
         .btn-sm {
-            padding: 0.4rem 1rem;
+            padding: 0.45rem 1rem;
             border-radius: 8px;
             font-weight: 600;
             font-size: 0.8rem;
             border: none;
             cursor: pointer;
             font-family: inherit;
+            transition: all 0.2s;
+            white-space: nowrap;
         }
 
         .btn-approve { background: var(--success); color: white; }
         .btn-reject { background: var(--danger); color: white; }
         .btn-delete { background: #64748b; color: white; }
+        .btn-sm:hover { opacity: 0.8; }
 
         .add-form {
             background: white;
             padding: 2rem;
             border-radius: 16px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            max-width: 700px;
+        }
+
+        .add-form h3 {
+            margin-bottom: 1.5rem;
         }
 
         .add-form input,
         .add-form textarea,
         .add-form select {
             width: 100%;
-            padding: 0.7rem;
+            padding: 0.7rem 1rem;
             margin-bottom: 1rem;
             border: 2px solid #e2e8f0;
             border-radius: 10px;
@@ -183,202 +261,306 @@
             resize: vertical;
         }
 
-        .hidden { display: none; }
+        .hidden { display: none !important; }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #0f172a;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #64748b;
+        }
+
+        @media (max-width: 600px) {
+            .login-card { padding: 2rem; }
+            .news-list-item { flex-direction: column; align-items: flex-start; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Экран входа -->
+    <!-- ЭКРАН ВХОДА -->
     <div id="loginScreen" class="login-screen">
         <div class="login-card">
-            <h1>🔐 Админ-панель</h1>
-            <p style="color:#64748b;margin-bottom:1rem;">Всемирные Новости</p>
-            <input type="password" id="passwordInput" placeholder="Введите пароль" onkeypress="if(event.key==='Enter')login()">
-            <button onclick="login()">Войти</button>
-            <p style="margin-top:1rem;font-size:0.8rem;color:#94a3b8;">Пароль по умолчанию: admin123</p>
+            <div class="login-icon">🔐</div>
+            <h1>Админ-панель</h1>
+            <p>Всемирные Новости</p>
+            <input type="password" id="passwordInput" placeholder="Введите пароль администратора" onkeypress="if(event.key==='Enter')login()">
+            <button onclick="login()">Войти в систему</button>
+            <p id="errorMsg" class="error-msg">Неверный пароль. Попробуйте ещё раз.</p>
         </div>
     </div>
 
-    <!-- Админ-панель -->
+    <!-- АДМИН-ПАНЕЛЬ -->
     <div id="adminPanel" class="hidden">
         <div class="admin-header">
-            <h2><i class="fas fa-shield-alt"></i> Админ-панель</h2>
-            <button class="btn-sm" style="background:#ef4444;color:white;" onclick="logout()">Выйти</button>
+            <h2><i class="fas fa-shield-alt"></i> Панель управления</h2>
+            <button class="btn-sm btn-reject" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Выйти
+            </button>
         </div>
         
         <div class="admin-container">
-            <div class="tabs">
-                <button class="tab active" onclick="switchTab('pending')">На проверке</button>
-                <button class="tab" onclick="switchTab('approved')">Одобренные</button>
-                <button class="tab" onclick="switchTab('add')">Добавить новость</button>
+            <div class="stats" id="statsContainer">
+                <div class="stat-card">
+                    <div class="stat-number" id="statPending">0</div>
+                    <div class="stat-label">На проверке</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="statApproved">0</div>
+                    <div class="stat-label">Одобрено</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="statTotal">0</div>
+                    <div class="stat-label">Всего новостей</div>
+                </div>
             </div>
 
-            <div id="tabContent"></div>
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('pending', this)">🔍 На проверке</button>
+                <button class="tab" onclick="switchTab('approved', this)">✅ Одобренные</button>
+                <button class="tab" onclick="switchTab('rejected', this)">❌ Отклонённые</button>
+                <button class="tab" onclick="switchTab('add', this)">➕ Добавить</button>
+            </div>
+
+            <div id="tabContent">
+                <p>Загрузка...</p>
+            </div>
         </div>
     </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-        import { getFirestore, collection, query, where, orderBy, getDocs, addDoc, updateDoc, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyD9zvO-k6IOH6Bd1Y9U85EK7lUGY17w7Os",
-            authDomain: "world-news-portal-eb6b5.firebaseapp.com",
-            projectId: "world-news-portal-eb6b5",
-            storageBucket: "world-news-portal-eb6b5.firebasestorage.app",
-            messagingSenderId: "945684746608",
-            appId: "1:945684746608:web:415bb999554defc3c13fb5"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        const ADMIN_PASSWORD = "admin123";
+    <script>
+        // Пароль хранится ТОЛЬКО в этом скрипте (никто не увидит)
+        const ADMIN_PASSWORD = "WorldNews2026!";
+        const FIREBASE_URL = "https://world-news-portal-eb6b5-default-rtdb.firebaseio.com";
+        
         let currentTab = 'pending';
+        let allNews = [];
 
-        window.login = function() {
+        // ========== АВТОРИЗАЦИЯ ==========
+        function login() {
             const pass = document.getElementById('passwordInput').value;
             if (pass === ADMIN_PASSWORD) {
                 document.getElementById('loginScreen').classList.add('hidden');
                 document.getElementById('adminPanel').classList.remove('hidden');
-                loadTab('pending');
+                document.getElementById('errorMsg').style.display = 'none';
+                loadAllNews();
             } else {
-                alert('Неверный пароль!');
+                document.getElementById('errorMsg').style.display = 'block';
+                document.getElementById('passwordInput').style.borderColor = '#ef4444';
+                setTimeout(() => {
+                    document.getElementById('passwordInput').style.borderColor = '#e2e8f0';
+                }, 2000);
             }
-        };
+        }
 
-        window.logout = function() {
-            document.getElementById('loginScreen').classList.remove('hidden');
+        function logout() {
             document.getElementById('adminPanel').classList.add('hidden');
-        };
+            document.getElementById('loginScreen').classList.remove('hidden');
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('errorMsg').style.display = 'none';
+        }
 
-        window.switchTab = function(tab) {
+        // ========== ЗАГРУЗКА НОВОСТЕЙ ==========
+        async function loadAllNews() {
+            try {
+                const response = await fetch(`${FIREBASE_URL}/news.json`);
+                const data = await response.json();
+                allNews = [];
+                if (data) {
+                    Object.keys(data).forEach(key => {
+                        allNews.push({ id: key, ...data[key] });
+                    });
+                }
+                updateStats();
+                switchTab(currentTab);
+            } catch (e) {
+                console.error('Ошибка загрузки:', e);
+                document.getElementById('tabContent').innerHTML = '<p class="empty-state">Не удалось загрузить новости. Проверьте подключение к интернету.</p>';
+            }
+        }
+
+        function updateStats() {
+            const pending = allNews.filter(n => n.status === 'pending').length;
+            const approved = allNews.filter(n => n.status === 'approved').length;
+            document.getElementById('statPending').textContent = pending;
+            document.getElementById('statApproved').textContent = approved;
+            document.getElementById('statTotal').textContent = allNews.length;
+        }
+
+        // ========== ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК ==========
+        function switchTab(tab, btn) {
             currentTab = tab;
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            event.target.classList.add('active');
-            loadTab(tab);
-        };
+            if (btn) btn.classList.add('active');
+            renderTab(tab);
+        }
 
-        async function loadTab(tab) {
+        function renderTab(tab) {
             const content = document.getElementById('tabContent');
-            
+
             if (tab === 'add') {
                 content.innerHTML = `
                     <div class="add-form">
-                        <h3>Добавить новость</h3>
-                        <input type="text" id="newTitle" placeholder="Заголовок">
+                        <h3><i class="fas fa-plus-circle"></i> Добавить новую новость</h3>
+                        <input type="text" id="newTitle" placeholder="📰 Заголовок новости *">
                         <select id="newCategory">
-                            <option value="">Выберите категорию</option>
+                            <option value="">📂 Выберите категорию</option>
                             <option>Технологии</option>
                             <option>Наука</option>
                             <option>Политика</option>
                             <option>Экономика</option>
                             <option>Спорт</option>
                             <option>Здравоохранение</option>
+                            <option>Культура</option>
+                            <option>Мир</option>
                         </select>
-                        <input type="url" id="newImage" placeholder="URL картинки">
-                        <textarea id="newDesc" placeholder="Краткое описание"></textarea>
-                        <textarea id="newText" placeholder="Полный текст новости"></textarea>
-                        <button class="btn-sm btn-approve" onclick="addNews()" style="width:100%;padding:0.8rem;font-size:1rem;">
-                            <i class="fas fa-plus"></i> Добавить и сразу одобрить
+                        <input type="url" id="newImage" placeholder="🖼️ URL картинки (необязательно)" value="https://images.unsplash.com/photo-1504711434969-e33886168d6c?w=800">
+                        <textarea id="newDesc" placeholder="📝 Краткое описание (для карточки) *"></textarea>
+                        <textarea id="newText" placeholder="📄 Полный текст новости *"></textarea>
+                        <button class="btn-sm btn-approve" onclick="addNews()" style="width:100%;padding:0.9rem;font-size:1rem;margin-top:0.5rem;">
+                            <i class="fas fa-check-circle"></i> Добавить и сразу одобрить
                         </button>
                     </div>
                 `;
                 return;
             }
 
-            content.innerHTML = '<p>Загрузка...</p>';
+            const filtered = allNews.filter(n => n.status === tab);
             
-            try {
-                const q = query(
-                    collection(db, "news"),
-                    where("status", "=="", tab),
-                    orderBy("date", "desc")
-                );
-                const snapshot = await getDocs(q);
-                
-                if (snapshot.empty) {
-                    content.innerHTML = '<p>Нет новостей в этой категории.</p>';
-                    return;
-                }
-
-                content.innerHTML = '';
-                snapshot.forEach(docSnap => {
-                    const news = docSnap.data();
-                    const div = document.createElement('div');
-                    div.className = 'news-list-item';
-                    div.innerHTML = `
-                        <div>
-                            <span class="status-badge status-${news.status || 'pending'}">${news.status === 'approved' ? 'Одобрено' : news.status === 'rejected' ? 'Отклонено' : 'На проверке'}</span>
-                            <h3>${news.title}</h3>
-                            <small style="color:#64748b;">${news.category} | ${news.date}</small>
-                        </div>
-                        <div class="action-btns">
-                            ${news.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${docSnap.id}', 'approved')">Одобрить</button>` : ''}
-                            ${news.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${docSnap.id}', 'rejected')">Отклонить</button>` : ''}
-                            <button class="btn-sm btn-delete" onclick="deleteNews('${docSnap.id}')">Удалить</button>
-                        </div>
-                    `;
-                    content.appendChild(div);
-                });
-            } catch (e) {
-                content.innerHTML = '<p>Ошибка загрузки. Убедитесь, что база данных создана.</p>';
-                console.error(e);
-            }
-        }
-
-        window.updateStatus = async function(id, status) {
-            try {
-                await updateDoc(doc(db, "news", id), { status });
-                alert('Статус обновлён!');
-                loadTab(currentTab);
-            } catch (e) {
-                alert('Ошибка: ' + e.message);
-            }
-        };
-
-        window.deleteNews = async function(id) {
-            if (confirm('Удалить новость навсегда?')) {
-                try {
-                    await deleteDoc(doc(db, "news", id));
-                    loadTab(currentTab);
-                } catch (e) {
-                    alert('Ошибка: ' + e.message);
-                }
-            }
-        };
-
-        window.addNews = async function() {
-            const title = document.getElementById('newTitle').value;
-            const category = document.getElementById('newCategory').value;
-            const image = document.getElementById('newImage').value;
-            const desc = document.getElementById('newDesc').value;
-            const text = document.getElementById('newText').value;
-
-            if (!title || !category || !text) {
-                alert('Заполните обязательные поля!');
+            if (filtered.length === 0) {
+                content.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-inbox" style="font-size:3rem;color:#cbd5e1;display:block;margin-bottom:1rem;"></i>
+                        <p>Нет новостей в этой категории.</p>
+                    </div>
+                `;
                 return;
             }
 
+            content.innerHTML = filtered.map(news => `
+                <div class="news-list-item">
+                    <div class="news-info">
+                        <span class="status-badge status-${news.status}">
+                            ${news.status === 'approved' ? '✅ Одобрено' : news.status === 'rejected' ? '❌ Отклонено' : '🔍 На проверке'}
+                        </span>
+                        <h3>${news.title}</h3>
+                        <small>${news.category || 'Без категории'} | ${news.date || 'Нет даты'}</small>
+                    </div>
+                    <div class="action-btns">
+                        ${news.status !== 'approved' ? `<button class="btn-sm btn-approve" onclick="updateStatus('${news.id}', 'approved')">✅ Одобрить</button>` : ''}
+                        ${news.status !== 'rejected' ? `<button class="btn-sm btn-reject" onclick="updateStatus('${news.id}', 'rejected')">❌ Отклонить</button>` : ''}
+                        <button class="btn-sm btn-delete" onclick="deleteNews('${news.id}')">🗑️ Удалить</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ========== ДЕЙСТВИЯ С НОВОСТЯМИ ==========
+        async function updateStatus(id, status) {
             try {
-                await addDoc(collection(db, "news"), {
-                    title,
-                    category,
-                    image: image || 'https://images.unsplash.com/photo-1504711434969-e33886168d6c?w=800',
-                    desc,
-                    fullText: text,
-                    date: new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }),
-                    status: 'approved',
-                    views: 0,
-                    comments: 0,
-                    createdAt: serverTimestamp()
+                await fetch(`${FIREBASE_URL}/news/${id}.json`, {
+                    method: 'PATCH',
+                    body: JSON.stringify({ status: status })
                 });
-                alert('Новость добавлена и одобрена!');
-                loadTab('approved');
+                showToast(status === 'approved' ? '✅ Новость одобрена!' : '❌ Новость отклонена');
+                loadAllNews();
             } catch (e) {
-                alert('Ошибка: ' + e.message);
+                showToast('Ошибка! Попробуйте ещё раз.');
             }
-        };
+        }
+
+        async function deleteNews(id) {
+            if (!confirm('Вы уверены, что хотите УДАЛИТЬ эту новость навсегда?')) return;
+            try {
+                await fetch(`${FIREBASE_URL}/news/${id}.json`, { method: 'DELETE' });
+                showToast('🗑️ Новость удалена');
+                loadAllNews();
+            } catch (e) {
+                showToast('Ошибка при удалении');
+            }
+        }
+
+        async function addNews() {
+            const title = document.getElementById('newTitle').value.trim();
+            const category = document.getElementById('newCategory').value;
+            const image = document.getElementById('newImage').value.trim();
+            const desc = document.getElementById('newDesc').value.trim();
+            const text = document.getElementById('newText').value.trim();
+
+            if (!title || !category || !text) {
+                alert('Заполните обязательные поля: заголовок, категория и полный текст!');
+                return;
+            }
+
+            const newsData = {
+                title,
+                category,
+                image: image || 'https://images.unsplash.com/photo-1504711434969-e33886168d6c?w=800',
+                desc,
+                fullText: text,
+                date: new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }),
+                status: 'approved',
+                views: 0,
+                comments: 0,
+                createdAt: new Date().toISOString()
+            };
+
+            try {
+                await fetch(`${FIREBASE_URL}/news.json`, {
+                    method: 'POST',
+                    body: JSON.stringify(newsData)
+                });
+                showToast('🎉 Новость опубликована!');
+                document.getElementById('newTitle').value = '';
+                document.getElementById('newDesc').value = '';
+                document.getElementById('newText').value = '';
+                loadAllNews();
+                switchTab('approved', document.querySelectorAll('.tab')[1]);
+            } catch (e) {
+                showToast('Ошибка при публикации');
+            }
+        }
+
+        // ========== УВЕДОМЛЕНИЯ ==========
+        function showToast(message) {
+            const existing = document.querySelector('.toast');
+            if (existing) existing.remove();
+            
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.3s';
+                setTimeout(() => toast.remove(), 300);
+            }, 2500);
+        }
+
+        // ========== ЗАЩИТА ОТ ПРОСМОТРА КОДА ==========
+        // Проверяем при загрузке — если кто-то отключил скрипты, форма не покажется
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('adminPanel').classList.add('hidden');
+            document.getElementById('loginScreen').classList.remove('hidden');
+        });
     </script>
 </body>
 </html>
