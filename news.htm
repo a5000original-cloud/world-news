@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новость — Всемирные Новости</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --bg: #f0f4ff;
+            --text: #0f172a;
+            --text-light: #64748b;
+            --danger: #ef4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .header-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .back-btn {
+            background: #f1f5f9;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .back-btn:hover {
+            background: #e2e8f0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .article-header {
+            margin-bottom: 2rem;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            background: #e2e8f0;
+        }
+
+        .article-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 2rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .article-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #334155;
+            margin-bottom: 3rem;
+            white-space: pre-wrap;
+        }
+
+        /* Комментарии */
+        .comments-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
+        }
+
+        .comments-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .comment-form {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .comment-input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            resize: none;
+            min-height: 50px;
+        }
+
+        .comment-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .comment-submit {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .comment-submit:hover {
+            background: #1d4ed8;
+        }
+
+        .comment {
+            background: #f8fafc;
+            padding: 1.2rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .comment-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .comment-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .comment-date {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .comment-text {
+            font-size: 0.95rem;
+            color: #334155;
+            line-height: 1.5;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-light);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-inner">
+            <button class="back-btn" onclick="history.back()">
+                <i class="fas fa-arrow-left"></i> Назад
+            </button>
+            <span style="font-weight:700;">Всемирные Новости</span>
+        </div>
+    </header>
+
+    <div class="container" id="articleContainer">
+        <div class="loading">Загрузка новости...</div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+        import { getFirestore, doc, getDoc, collection, query, where, orderBy, getDocs, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD9zvO-k6IOH6Bd1Y9U85EK7lUGY17w7Os",
+            authDomain: "world-news-portal-eb6b5.firebaseapp.com",
+            projectId: "world-news-portal-eb6b5",
+            storageBucket: "world-news-portal-eb6b5.firebasestorage.app",
+            messagingSenderId: "945684746608",
+            appId: "1:945684746608:web:415bb999554defc3c13fb5"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const newsId = urlParams.get('id');
+
+        const demoComments = [
+            { author: "Алексей Петров", text: "Очень интересная новость! Жду продолжения развития событий.", date: "2 часа назад", avatar: "АП" },
+            { author: "Мария Иванова", text: "Наконец-то! Давно ждала подобных новостей. Технологии не стоят на месте.", date: "3 часа назад", avatar: "МИ" },
+            { author: "Дмитрий Соколов", text: "Скептически отношусь к таким заявлениям. Нужно больше доказательств.", date: "4 часа назад", avatar: "ДС" },
+            { author: "Елена Козлова", text: "Это прорыв! Представляю, как это изменит нашу жизнь в ближайшие годы.", date: "5 часов назад", avatar: "ЕК" },
+            { author: "Сергей Волков", text: "Интересно, как на это отреагируют другие страны. Будет ли конкуренция?", date: "6 часов назад", avatar: "СВ" }
+        ];
+
+        const demoNews = {
+            "demo1": {
+                title: "Прорыв в квантовых вычислениях: новый процессор превзошёл классические суперкомпьютеры",
+                category: "Технологии",
+                date: "20 июля 2026",
+                image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1200&h=600&fit=crop",
+                text: "Исследователи из Европейской организации по ядерным исследованиям (ЦЕРН) совместно с командой Google Quantum AI совершили исторический прорыв. Новый квантовый процессор «Sycamore X» на 1057 кубитах успешно выполнил вычисление, на которое самому мощному классическому суперкомпьютеру Frontier потребовалось бы более 47 лет.\n\nЭто открывает путь к революции в криптографии, разработке лекарств и моделировании климата. «Мы стоим на пороге новой эры вычислительных технологий», — заявил профессор Михаил Лукин, руководитель проекта.\n\nСледующим этапом станет создание 10-тысячекубитного процессора к 2028 году. Инвесторы уже вложили более $12 миллиардов в развитие квантовых технологий в этом году.",
+                views: 15420
+            },
+            "demo2": {
+                title: "Марсианская миссия ExoMars-28 обнаружила следы органических молекул",
+                category: "Наука",
+                date: "19 июля 2026",
+                image: "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=1200&h=600&fit=crop",
+                text: "Ровер «Розалинд Франклин» миссии ExoMars-28 совершил сенсационное открытие: в образцах, взятых из подповерхностного озера в кратере Езеро, обнаружены сложные органические молекулы, включая аминокислоты и липиды.\n\n«Это самое убедительное доказательство того, что на Марсе могла существовать микробная жизнь», — сообщила доктор Елена Смирнова, главный научный сотрудник миссии.\n\nАнализ показывает, что возраст отложений составляет около 3,5 миллиардов лет. Следующим шагом станет доставка образцов на Землю в рамках миссии Mars Sample Return в 2031 году.",
+                views: 12300
+            },
+            "demo3": {
+                title: "Саммит G20 в Дели: историческое соглашение о климатическом финансировании",
+                category: "Политика",
+                date: "18 июля 2026",
+                image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=1200&h=600&fit=crop",
+                text: "На саммите «Большой двадцатки» в Нью-Дели было подписано историческое соглашение о создании Глобального климатического фонда объёмом $4 триллиона.\n\nСредства будут направлены на декарбонизацию промышленности, защиту биоразнообразия и помощь развивающимся странам в переходе на чистую энергию.\n\n«Это поворотный момент в истории человечества. Мы наконец-то объединились перед лицом общего вызова», — заявил премьер-министр Индии Нарендра Моди.",
+                views: 22100
+            },
+            "demo4": {
+                title: "Apple представила Vision Pro 2 с нейроинтерфейсом прямого управления",
+                category: "Технологии",
+                date: "18 июля 2026",
+                image: "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=1200&h=600&fit=crop",
+                text: "Компания Apple провела презентацию долгожданного устройства Vision Pro второго поколения. Главная инновация — встроенный нейроинтерфейс, который считывает сигналы моторной коры головного мозга, позволяя управлять интерфейсом без использования рук и голоса.\n\nУстройство также получило Micro-OLED дисплеи с разрешением 8K на каждый глаз и время автономной работы до 8 часов. Цена стартует от $2999, начало продаж — сентябрь 2026 года.\n\nАналитики прогнозируют продажи на уровне 15 миллионов устройств в первый год.",
+                views: 35600
+            },
+            "demo5": {
+                title: "ВОЗ одобрила первую универсальную вакцину против гриппа с эффективностью 97%",
+                category: "Здравоохранение",
+                date: "17 июля 2026",
+                image: "https://images.unsplash.com/photo-1584483766114-2cea6facdf57?w=1200&h=600&fit=crop",
+                text: "Всемирная организация здравоохранения официально одобрила применение вакцины «FluShield Universal», разработанной совместно компаниями Moderna и BioNTech.\n\nКлинические испытания на 45 000 добровольцах показали эффективность 97% против всех известных штаммов вируса гриппа, включая птичий и свиной. В отличие от сезонных вакцин, FluShield обеспечивает иммунитет на срок до 5 лет.\n\n«Это конец ежегодной гонки за мутирующим вирусом», — заявил глава ВОЗ. Массовая вакцинация в 70 странах начнётся уже в августе 2026 года.",
+                views: 18900
+            },
+            "demo6": {
+                title: "Чемпионат мира по футболу 2026: финал США — Аргентина стал рекордным",
+                category: "Спорт",
+                date: "17 июля 2026",
+                image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=1200&h=600&fit=crop",
+                text: "Финал Чемпионата мира по футболу 2026 года между сборными США и Аргентины на стадионе MetLife в Нью-Джерси побил все рекорды телесмотрения.\n\nПо данным FIFA, матч посмотрели более 2.5 миллиардов человек, что на 40% превышает предыдущий рекорд финала 2022 года. Аргентина одержала победу со счётом 3:2 в дополнительное время.\n\nЛионель Месси, завершающий карьеру в сборной, был признан лучшим игроком турнира. Экономический эффект от проведения чемпионата оценивается в $18 миллиардов.",
+                views: 45200
+            }
+        };
+
+        async function loadArticle() {
+            const container = document.getElementById('articleContainer');
+            
+            // Пробуем загрузить из Firebase
+            if (newsId && !newsId.startsWith('demo')) {
+                try {
+                    const docRef = doc(db, "news", newsId);
+                    const docSnap = await getDoc(docRef);
+                    if (docSnap.exists()) {
+                        const data = docSnap.data();
+                        renderArticle({ id: newsId, ...data });
+                        loadComments(newsId);
+                        return;
+                    }
+                } catch (e) {
+                    console.log("Загружаем демо-новость");
+                }
+            }
+            
+            // Демо-новость
+            const article = demoNews[newsId] || demoNews["demo1"];
+            renderArticle(article);
+            renderDemoComments();
+        }
+
+        function renderArticle(article) {
+            const container = document.getElementById('articleContainer');
+            container.innerHTML = `
+                <div class="article-header">
+                    <span class="article-category">${article.category}</span>
+                    <h1 class="article-title">${article.title}</h1>
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar"></i> ${article.date}</span>
+                        <span><i class="far fa-eye"></i> ${(article.views || 0).toLocaleString()} просмотров</span>
+                    </div>
+                </div>
+                <img class="article-image" src="${article.image}" alt="${article.title}" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168d6c?w=1200'">
+                <div class="article-text">${article.text || article.fullText || ''}</div>
+                <div class="comments-section">
+                    <h2 class="comments-title"><i class="far fa-comments"></i> Комментарии</h2>
+                    <div class="comment-form">
+                        <textarea class="comment-input" id="commentInput" placeholder="Напишите ваш комментарий..."></textarea>
+                        <button class="comment-submit" onclick="addComment()">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div id="commentsList"></div>
+                </div>
+            `;
+        }
+
+        function renderDemoComments() {
+            const list = document.getElementById('commentsList');
+            list.innerHTML = demoComments.map(c => `
+                <div class="comment">
+                    <div class="comment-header">
+                        <div class="comment-avatar">${c.avatar}</div>
+                        <div>
+                            <div class="comment-author">${c.author}</div>
+                            <div class="comment-date">${c.date}</div>
+                        </div>
+                    </div>
+                    <div class="comment-text">${c.text}</div>
+                </div>
+            `).join('');
+        }
+
+        async function loadComments(newsId) {
+            try {
+                const q = query(collection(db, "comments"), where("newsId", "==", newsId), orderBy("date", "desc"));
+                const snapshot = await getDocs(q);
+                const list = document.getElementById('commentsList');
+                if (snapshot.empty) {
+                    renderDemoComments();
+                    return;
+                }
+                list.innerHTML = '';
+                snapshot.forEach(doc => {
+                    const c = doc.data();
+                    list.innerHTML += `
+                        <div class="comment">
+                            <div class="comment-header">
+                                <div class="comment-avatar">${c.author ? c.author[0].toUpperCase() : '?'}</div>
+                                <div>
+                                    <div class="comment-author">${c.author || 'Аноним'}</div>
+                                    <div class="comment-date">${c.date || 'Только что'}</div>
+                                </div>
+                            </div>
+                            <div class="comment-text">${c.text}</div>
+                        </div>
+                    `;
+                });
+            } catch (e) {
+                renderDemoComments();
+            }
+        }
+
+        window.addComment = function() {
+            const input = document.getElementById('commentInput');
+            const text = input.value.trim();
+            if (!text) return;
+            
+            const list = document.getElementById('commentsList');
+            const newComment = `
+                <div class="comment" style="border-left: 3px solid var(--primary);">
+                    <div class="comment-header">
+                        <div class="comment-avatar">Вы</div>
+                        <div>
+                            <div class="comment-author">Пользователь</div>
+                            <div class="comment-date">Только что</div>
+                        </div>
+                    </div>
+                    <div class="comment-text">${text}</div>
+                </div>
+            `;
+            list.insertAdjacentHTML('afterbegin', newComment);
+            input.value = '';
+        };
+
+        loadArticle();
+    </script>
+</body>
+</html>
