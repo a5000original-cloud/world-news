@@ -4,31 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Всемирные Новости 2026 — Свежие новости онлайн</title>
-    <meta name="description" content="Актуальные мировые новости 2026 года. Технологии, наука, политика, спорт. Читайте и обсуждайте свежие новости онлайн.">
-    <meta name="keywords" content="новости, мировые новости, технологии, наука, политика, спорт">
-    <meta name="robots" content="index, follow">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="description" content="Актуальные мировые новости. Технологии, наука, политика, спорт. Читайте и обсуждайте!">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
         :root {
             --primary: #3b82f6;
-            --primary-dark: #1d4ed8;
-            --accent: #8b5cf6;
             --bg: #f0f4ff;
-            --card-bg: #ffffff;
             --text: #0f172a;
             --text-light: #64748b;
             --danger: #ef4444;
             --success: #10b981;
-            --warning: #f59e0b;
-            --border: #e2e8f0;
-            --radius: 20px;
-            --shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
-            --shadow-lg: 0 25px 50px -12px rgba(0,0,0,0.15);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -41,9 +28,8 @@
             min-height: 100vh;
         }
 
-        /* Шапка */
         .header {
-            background: rgba(255,255,255,0.8);
+            background: rgba(255,255,255,0.9);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(0,0,0,0.05);
             padding: 1rem 2rem;
@@ -71,7 +57,7 @@
         }
 
         .logo-icon {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            background: linear-gradient(135deg, var(--primary), #8b5cf6);
             color: white;
             width: 45px;
             height: 45px;
@@ -85,9 +71,7 @@
         .logo-text {
             font-size: 1.5rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #1e293b, #475569);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #1e293b;
         }
 
         .search-box {
@@ -109,16 +93,6 @@
             font-family: inherit;
         }
 
-        .search-box i {
-            color: var(--text-light);
-        }
-
-        .nav-actions {
-            display: flex;
-            gap: 0.8rem;
-            align-items: center;
-        }
-
         .btn {
             padding: 0.6rem 1.5rem;
             border-radius: 50px;
@@ -126,12 +100,12 @@
             font-size: 0.85rem;
             border: none;
             cursor: pointer;
-            transition: all 0.3s;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
             font-family: inherit;
+            transition: all 0.3s;
         }
 
         .btn-primary {
@@ -140,14 +114,13 @@
         }
 
         .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
+            background: #1d4ed8;
         }
 
         .btn-outline {
             background: white;
             color: var(--text);
-            border: 1px solid var(--border);
+            border: 1px solid #e2e8f0;
         }
 
         .main-container {
@@ -156,7 +129,6 @@
             padding: 2rem;
         }
 
-        /* Категории */
         .categories {
             display: flex;
             gap: 0.5rem;
@@ -182,7 +154,6 @@
             color: white;
         }
 
-        /* Сетка новостей */
         .news-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -191,16 +162,16 @@
 
         .news-card {
             background: white;
-            border-radius: var(--radius);
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: var(--shadow);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
             transition: all 0.3s;
             cursor: pointer;
         }
 
         .news-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
         }
 
         .card-image {
@@ -220,7 +191,6 @@
             border-radius: 30px;
             font-size: 0.75rem;
             font-weight: 600;
-            text-transform: uppercase;
         }
 
         .card-content {
@@ -256,8 +226,8 @@
         .loading {
             text-align: center;
             padding: 3rem;
-            font-size: 1.2rem;
             color: var(--text-light);
+            grid-column: 1 / -1;
         }
 
         .spinner {
@@ -274,6 +244,14 @@
             to { transform: rotate(360deg); }
         }
 
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-light);
+            border-top: 1px solid #e2e8f0;
+            margin-top: 2rem;
+        }
+
         @media (max-width: 768px) {
             .news-grid { grid-template-columns: 1fr; }
             .header-inner { flex-direction: column; }
@@ -285,7 +263,7 @@
 
     <header class="header">
         <div class="header-inner">
-            <div class="logo" onclick="location.href='/'">
+            <div class="logo" onclick="location.reload()">
                 <div class="logo-icon"><i class="fas fa-globe-americas"></i></div>
                 <span class="logo-text">Всемирные Новости</span>
             </div>
@@ -295,26 +273,23 @@
                 <input type="text" id="searchInput" placeholder="Поиск новостей..." oninput="filterNews()">
             </div>
             
-            <div class="nav-actions">
+            <div>
                 <a href="admin.html" class="btn btn-outline">
                     <i class="fas fa-lock"></i> Админ
                 </a>
-                <button class="btn btn-primary" onclick="scrollToNews()">
-                    <i class="fas fa-newspaper"></i> Свежие
-                </button>
             </div>
         </div>
     </header>
 
     <div class="main-container">
         <div class="categories" id="categoriesContainer">
-            <button class="category-pill active" onclick="filterByCategory('all')">Все</button>
-            <button class="category-pill" onclick="filterByCategory('Технологии')">Технологии</button>
-            <button class="category-pill" onclick="filterByCategory('Наука')">Наука</button>
-            <button class="category-pill" onclick="filterByCategory('Политика')">Политика</button>
-            <button class="category-pill" onclick="filterByCategory('Экономика')">Экономика</button>
-            <button class="category-pill" onclick="filterByCategory('Спорт')">Спорт</button>
-            <button class="category-pill" onclick="filterByCategory('Здравоохранение')">Здоровье</button>
+            <button class="category-pill active" onclick="filterByCategory('all', this)">Все</button>
+            <button class="category-pill" onclick="filterByCategory('Технологии', this)">Технологии</button>
+            <button class="category-pill" onclick="filterByCategory('Наука', this)">Наука</button>
+            <button class="category-pill" onclick="filterByCategory('Политика', this)">Политика</button>
+            <button class="category-pill" onclick="filterByCategory('Экономика', this)">Экономика</button>
+            <button class="category-pill" onclick="filterByCategory('Спорт', this)">Спорт</button>
+            <button class="category-pill" onclick="filterByCategory('Здравоохранение', this)">Здоровье</button>
         </div>
 
         <div id="newsGrid" class="news-grid">
@@ -325,23 +300,12 @@
         </div>
     </div>
 
-    <!-- Firebase SDK -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-        import { getFirestore, collection, query, where, orderBy, getDocs, limit } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+    <footer class="footer">
+        <p>© 2026 Всемирные Новости. Все права защищены.</p>
+    </footer>
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyD9zvO-k6IOH6Bd1Y9U85EK7lUGY17w7Os",
-            authDomain: "world-news-portal-eb6b5.firebaseapp.com",
-            projectId: "world-news-portal-eb6b5",
-            storageBucket: "world-news-portal-eb6b5.firebasestorage.app",
-            messagingSenderId: "945684746608",
-            appId: "1:945684746608:web:415bb999554defc3c13fb5"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
+    <script>
+        const FIREBASE_URL = "https://world-news-portal-eb6b5-default-rtdb.firebaseio.com";
         let allNews = [];
         let currentCategory = 'all';
 
@@ -350,111 +314,47 @@
             grid.innerHTML = '<div class="loading"><div class="spinner"></div>Загрузка новостей...</div>';
 
             try {
-                const q = query(
-                    collection(db, "news"),
-                    where("status", "==", "approved"),
-                    orderBy("date", "desc"),
-                    limit(50)
-                );
-                const snapshot = await getDocs(q);
+                const response = await fetch(`${FIREBASE_URL}/news.json`);
+                const data = await response.json();
+                
                 allNews = [];
-                snapshot.forEach(doc => {
-                    allNews.push({ id: doc.id, ...doc.data() });
+                if (data) {
+                    Object.keys(data).forEach(key => {
+                        const news = data[key];
+                        if (news.status === 'approved') {
+                            allNews.push({ id: key, ...news });
+                        }
+                    });
+                }
+                
+                // Сортируем по дате создания (новые сверху)
+                allNews.sort((a, b) => {
+                    if (a.createdAt && b.createdAt) return b.createdAt.localeCompare(a.createdAt);
+                    return 0;
                 });
 
                 if (allNews.length === 0) {
-                    // Если новостей нет, показываем демо-новости
-                    loadDemoNews();
+                    grid.innerHTML = '<div class="loading" style="grid-column:1/-1;">Новостей пока нет. <a href="admin.html">Добавьте первую новость через админ-панель!</a></div>';
                     return;
                 }
 
                 displayNews(allNews);
-            } catch (error) {
-                console.error("Ошибка загрузки:", error);
-                loadDemoNews();
+            } catch (e) {
+                console.error('Ошибка загрузки:', e);
+                grid.innerHTML = '<div class="loading" style="grid-column:1/-1;">Ошибка загрузки новостей. Проверьте подключение к интернету.</div>';
             }
-        }
-
-        function loadDemoNews() {
-            allNews = [
-                {
-                    id: "demo1",
-                    title: "Прорыв в квантовых вычислениях: новый процессор превзошёл классические суперкомпьютеры",
-                    category: "Технологии",
-                    date: "20 июля 2026",
-                    desc: "Учёные из ЦЕРН и Google Quantum AI объявили о создании квантового чипа, решающего задачи за секунды.",
-                    image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&h=400&fit=crop",
-                    comments: 24,
-                    views: 15420
-                },
-                {
-                    id: "demo2",
-                    title: "Марсианская миссия ExoMars-28 обнаружила следы органических молекул",
-                    category: "Наука",
-                    date: "19 июля 2026",
-                    desc: "Ровер Европейского космического агентства передал данные о наличии сложных органических соединений.",
-                    image: "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=800&h=400&fit=crop",
-                    comments: 18,
-                    views: 12300
-                },
-                {
-                    id: "demo3",
-                    title: "Саммит G20 в Дели: историческое соглашение о климатическом финансировании",
-                    category: "Политика",
-                    date: "18 июля 2026",
-                    desc: "Лидеры двадцати крупнейших экономик договорились выделить $4 трлн на борьбу с изменением климата.",
-                    image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=800&h=400&fit=crop",
-                    comments: 35,
-                    views: 22100
-                },
-                {
-                    id: "demo4",
-                    title: "Apple представила Vision Pro 2 с нейроинтерфейсом прямого управления",
-                    category: "Технологии",
-                    date: "18 июля 2026",
-                    desc: "Новое устройство смешанной реальности считывает мозговые импульсы для навигации без контроллеров.",
-                    image: "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=800&h=400&fit=crop",
-                    comments: 42,
-                    views: 35600
-                },
-                {
-                    id: "demo5",
-                    title: "ВОЗ одобрила первую универсальную вакцину против гриппа с эффективностью 97%",
-                    category: "Здравоохранение",
-                    date: "17 июля 2026",
-                    desc: "Препарат обеспечивает длительный иммунитет против всех известных штаммов вируса гриппа.",
-                    image: "https://images.unsplash.com/photo-1584483766114-2cea6facdf57?w=800&h=400&fit=crop",
-                    comments: 29,
-                    views: 18900
-                },
-                {
-                    id: "demo6",
-                    title: "Чемпионат мира по футболу 2026: финал США — Аргентина стал рекордным",
-                    category: "Спорт",
-                    date: "17 июля 2026",
-                    desc: "Матч на стадионе MetLife собрал аудиторию более 2.5 миллиардов зрителей по всему миру.",
-                    image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=400&fit=crop",
-                    comments: 56,
-                    views: 45200
-                }
-            ];
-            displayNews(allNews);
         }
 
         function displayNews(newsArray) {
             const grid = document.getElementById('newsGrid');
-            if (newsArray.length === 0) {
-                grid.innerHTML = '<div class="loading">Новости не найдены. Попробуйте изменить фильтр.</div>';
-                return;
-            }
-
+            
             grid.innerHTML = newsArray.map(news => `
-                <div class="news-card" onclick="window.location.href='news.html?id=${news.id}'" data-aos="fade-up">
+                <div class="news-card" onclick="openNews('${news.id}')">
                     <div class="card-image" style="background-image: url('${news.image || 'https://images.unsplash.com/photo-1504711434969-e33886168d6c?w=800'}')">
-                        <span class="card-badge">${news.category}</span>
+                        <span class="card-badge">${news.category || 'Новость'}</span>
                     </div>
                     <div class="card-content">
-                        <div class="card-date"><i class="far fa-calendar"></i> ${news.date}</div>
+                        <div class="card-date"><i class="far fa-calendar"></i> ${news.date || ''}</div>
                         <h3 class="card-title">${news.title}</h3>
                         <p class="card-desc">${news.desc || ''}</p>
                         <div class="card-stats">
@@ -466,15 +366,22 @@
             `).join('');
         }
 
-        window.filterByCategory = function(cat) {
+        function openNews(id) {
+            // Сохраняем ID новости и переходим на страницу новости
+            localStorage.setItem('currentNewsId', id);
+            window.location.href = 'news.html';
+        }
+
+        function filterByCategory(cat, btn) {
             currentCategory = cat;
             document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
-            event.target.classList.add('active');
+            if (btn) btn.classList.add('active');
+            
             const filtered = cat === 'all' ? allNews : allNews.filter(n => n.category === cat);
-            displayNews(filtered);
-        };
+            displayNews(filtered.length > 0 ? filtered : allNews);
+        }
 
-        window.filterNews = function() {
+        function filterNews() {
             const query = document.getElementById('searchInput').value.toLowerCase();
             let filtered = allNews;
             if (currentCategory !== 'all') {
@@ -486,17 +393,10 @@
                     (n.desc && n.desc.toLowerCase().includes(query))
                 );
             }
-            displayNews(filtered);
-        };
+            displayNews(filtered.length > 0 ? filtered : []);
+        }
 
-        window.scrollToNews = function() {
-            document.getElementById('newsGrid').scrollIntoView({ behavior: 'smooth' });
-        };
-
-        // Загрузка при старте
         loadNews();
     </script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>AOS.init({ duration: 600, once: true });</script>
 </body>
 </html>
